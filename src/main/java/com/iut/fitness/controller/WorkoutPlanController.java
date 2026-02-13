@@ -2,6 +2,7 @@ package com.iut.fitness.controller;
 
 import com.iut.fitness.model.WorkoutPlan;
 import com.iut.fitness.service.WorkoutPlanService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +34,12 @@ public class WorkoutPlanController {
     }
     
     @PostMapping
-    public WorkoutPlan createWorkoutPlan(@RequestBody WorkoutPlan workoutPlan) {
+    public WorkoutPlan createWorkoutPlan(@Valid @RequestBody WorkoutPlan workoutPlan) {
         return workoutPlanService.saveWorkoutPlan(workoutPlan);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<WorkoutPlan> updateWorkoutPlan(@PathVariable Long id, @RequestBody WorkoutPlan workoutPlan) {
+    public ResponseEntity<WorkoutPlan> updateWorkoutPlan(@PathVariable Long id, @Valid @RequestBody WorkoutPlan workoutPlan) {
         return workoutPlanService.getWorkoutPlanById(id)
                 .map(existingPlan -> {
                     workoutPlan.setId(id);
