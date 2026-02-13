@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness IUT - Plans d'entraînement</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Fitness IUT</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/users">Utilisateurs</a></li>
+                <li><a href="/exercises">Exercices</a></li>
+                <li><a href="/workout-plans">Plans d'entraînement</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Plans d'entraînement</h2>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Utilisateur</th>
+                        <th>Exercice</th>
+                        <th>Séries</th>
+                        <th>Répétitions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="plan : ${workoutPlans}">
+                        <td th:text="${plan.id}"></td>
+                        <td th:text="${plan.name}"></td>
+                        <td th:text="${plan.description}"></td>
+                        <td th:text="${plan.user != null ? plan.user.username : 'N/A'}"></td>
+                        <td th:text="${plan.exercise != null ? plan.exercise.name : 'N/A'}"></td>
+                        <td th:text="${plan.sets}"></td>
+                        <td th:text="${plan.reps}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(workoutPlans)}">
+                        <td colspan="7">Aucun plan d'entraînement trouvé</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="api-info">
+            <h3>API REST disponible</h3>
+            <p>Utilisez l'API REST pour gérer les plans d'entraînement :</p>
+            <ul>
+                <li>GET /api/workout-plans - Obtenir tous les plans</li>
+                <li>GET /api/workout-plans/{id} - Obtenir un plan</li>
+                <li>GET /api/workout-plans/user/{userId} - Obtenir par utilisateur</li>
+                <li>POST /api/workout-plans - Créer un plan</li>
+                <li>PUT /api/workout-plans/{id} - Mettre à jour un plan</li>
+                <li>DELETE /api/workout-plans/{id} - Supprimer un plan</li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Fitness IUT - Tous droits réservés</p>
+    </footer>
+</body>
+</html>

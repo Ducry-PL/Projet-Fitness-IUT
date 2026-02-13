@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness IUT - Accueil</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Fitness IUT</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/users">Utilisateurs</a></li>
+                <li><a href="/exercises">Exercices</a></li>
+                <li><a href="/workout-plans">Plans d'entraînement</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="hero">
+            <h2>Bienvenue sur Fitness IUT</h2>
+            <p>Votre application de gestion de fitness</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Utilisateurs</h3>
+                <p class="stat-number" th:text="${userCount}">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Exercices</h3>
+                <p class="stat-number" th:text="${exerciseCount}">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Plans d'entraînement</h3>
+                <p class="stat-number" th:text="${workoutPlanCount}">0</p>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>Fonctionnalités</h2>
+            <div class="feature-list">
+                <div class="feature">
+                    <h3>Gestion des utilisateurs</h3>
+                    <p>Créez et gérez les profils utilisateurs avec leurs informations personnelles</p>
+                </div>
+                <div class="feature">
+                    <h3>Bibliothèque d'exercices</h3>
+                    <p>Accédez à une large collection d'exercices classés par catégorie et difficulté</p>
+                </div>
+                <div class="feature">
+                    <h3>Plans d'entraînement personnalisés</h3>
+                    <p>Créez des plans d'entraînement sur mesure pour chaque utilisateur</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Fitness IUT - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
