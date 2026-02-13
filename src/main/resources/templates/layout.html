@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title != null ? title : 'Fitness IUT'}">Fitness IUT</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Fitness IUT</h1>
+            <nav>
+                <a th:href="@{/routines}">Routines</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+        
+        <div th:replace="${content}"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Fitness IUT - Projet Spring Boot</p>
+        </div>
+    </footer>
+</body>
+</html>

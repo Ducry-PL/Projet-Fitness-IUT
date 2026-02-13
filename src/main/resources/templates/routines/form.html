@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${isEdit ? 'Modifier la Routine' : 'Créer une Routine'} + ' - Fitness IUT'">Routine Form - Fitness IUT</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Fitness IUT</h1>
+            <nav>
+                <a th:href="@{/routines(page=${page}, size=${size}, mc=${mc})}">Routines</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h2 th:text="${isEdit ? 'Modifier la Routine' : 'Créer une Routine'}">Routine Form</h2>
+            <a th:href="@{/routines(page=${page}, size=${size}, mc=${mc})}" class="btn btn-secondary">Annuler</a>
+        </div>
+
+        <div class="form-container">
+            <form th:action="${isEdit ? '/routines/' + routine.id + '/edit' : '/routines/create'}" 
+                  th:object="${routine}" 
+                  method="post" 
+                  class="form">
+                
+                <input type="hidden" name="page" th:value="${page}">
+                <input type="hidden" name="size" th:value="${size}">
+                <input type="hidden" name="mc" th:value="${mc}">
+
+                <div class="form-group">
+                    <label for="name">Nom de la routine <span class="required">*</span></label>
+                    <input type="text" 
+                           id="name" 
+                           th:field="*{name}" 
+                           class="form-control"
+                           th:classappend="${#fields.hasErrors('name')} ? 'error' : ''"
+                           placeholder="Ex: Routine Débutant"
+                           required>
+                    <span th:if="${#fields.hasErrors('name')}" 
+                          th:errors="*{name}" 
+                          class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" 
+                              th:field="*{description}" 
+                              class="form-control"
+                              rows="4"
+                              placeholder="Description de la routine..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Statut <span class="required">*</span></label>
+                    <select id="status" 
+                            th:field="*{status}" 
+                            class="form-control"
+                            th:classappend="${#fields.hasErrors('status')} ? 'error' : ''"
+                            required>
+                        <option value="">-- Sélectionner un statut --</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('status')}" 
+                          th:errors="*{status}" 
+                          class="error-message"></span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" th:text="${isEdit ? 'Modifier' : 'Créer'}">Submit</button>
+                    <a th:href="@{/routines(page=${page}, size=${size}, mc=${mc})}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Fitness IUT - Projet Spring Boot</p>
+        </div>
+    </footer>
+</body>
+</html>
