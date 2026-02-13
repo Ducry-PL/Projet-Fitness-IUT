@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness IUT - Utilisateurs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Fitness IUT</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/users">Utilisateurs</a></li>
+                <li><a href="/exercises">Exercices</a></li>
+                <li><a href="/workout-plans">Plans d'entraînement</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Liste des utilisateurs</h2>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Email</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Âge</th>
+                        <th>Poids (kg)</th>
+                        <th>Taille (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.age}"></td>
+                        <td th:text="${user.weight}"></td>
+                        <td th:text="${user.height}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(users)}">
+                        <td colspan="8">Aucun utilisateur trouvé</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="api-info">
+            <h3>API REST disponible</h3>
+            <p>Utilisez l'API REST pour gérer les utilisateurs :</p>
+            <ul>
+                <li>GET /api/users - Obtenir tous les utilisateurs</li>
+                <li>GET /api/users/{id} - Obtenir un utilisateur</li>
+                <li>POST /api/users - Créer un utilisateur</li>
+                <li>PUT /api/users/{id} - Mettre à jour un utilisateur</li>
+                <li>DELETE /api/users/{id} - Supprimer un utilisateur</li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Fitness IUT - Tous droits réservés</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness IUT - Exercices</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Fitness IUT</h1>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/users">Utilisateurs</a></li>
+                <li><a href="/exercises">Exercices</a></li>
+                <li><a href="/workout-plans">Plans d'entraînement</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Bibliothèque d'exercices</h2>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Catégorie</th>
+                        <th>Difficulté</th>
+                        <th>Durée (min)</th>
+                        <th>Calories brûlées</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="exercise : ${exercises}">
+                        <td th:text="${exercise.id}"></td>
+                        <td th:text="${exercise.name}"></td>
+                        <td th:text="${exercise.description}"></td>
+                        <td th:text="${exercise.category}"></td>
+                        <td th:text="${exercise.difficulty}"></td>
+                        <td th:text="${exercise.duration}"></td>
+                        <td th:text="${exercise.caloriesBurned}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(exercises)}">
+                        <td colspan="7">Aucun exercice trouvé</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="api-info">
+            <h3>API REST disponible</h3>
+            <p>Utilisez l'API REST pour gérer les exercices :</p>
+            <ul>
+                <li>GET /api/exercises - Obtenir tous les exercices</li>
+                <li>GET /api/exercises/{id} - Obtenir un exercice</li>
+                <li>GET /api/exercises/category/{category} - Obtenir par catégorie</li>
+                <li>POST /api/exercises - Créer un exercice</li>
+                <li>PUT /api/exercises/{id} - Mettre à jour un exercice</li>
+                <li>DELETE /api/exercises/{id} - Supprimer un exercice</li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Fitness IUT - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
