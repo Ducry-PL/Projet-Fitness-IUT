@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de la Routine - Fitness IUT</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Fitness IUT</h1>
+            <nav>
+                <a th:href="@{/routines(page=${page}, size=${size}, mc=${mc})}">Routines</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+
+        <div class="page-header">
+            <h2>Détail de la Routine</h2>
+            <div>
+                <a th:href="@{/routines/{id}/edit(id=${routine.id}, page=${page}, size=${size}, mc=${mc})}" 
+                   class="btn btn-warning">Modifier</a>
+                <a th:href="@{/routines(page=${page}, size=${size}, mc=${mc})}" 
+                   class="btn btn-secondary">Retour à la liste</a>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="detail-row">
+                <label>ID:</label>
+                <span th:text="${routine.id}">1</span>
+            </div>
+            <div class="detail-row">
+                <label>Nom:</label>
+                <span th:text="${routine.name}">Routine name</span>
+            </div>
+            <div class="detail-row">
+                <label>Description:</label>
+                <span th:text="${routine.description != null ? routine.description : 'Aucune description'}">Description</span>
+            </div>
+            <div class="detail-row">
+                <label>Date de création:</label>
+                <span th:text="${#temporals.format(routine.creationDate, 'dd/MM/yyyy')}">01/01/2024</span>
+            </div>
+            <div class="detail-row">
+                <label>Statut:</label>
+                <span th:class="${routine.status == 'active' ? 'badge badge-success' : 'badge badge-secondary'}" 
+                      th:text="${routine.status}">active</span>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h3>Exercices associés</h3>
+            <a th:href="@{/routines/{id}/exercises/create(id=${routine.id}, page=${page}, size=${size}, mc=${mc})}" 
+               class="btn btn-primary">Ajouter un Exercice</a>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Répétitions</th>
+                        <th>Poids (kg)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="exercise : ${routine.exercises}">
+                        <td th:text="${exercise.id}">1</td>
+                        <td th:text="${exercise.name}">Exercise name</td>
+                        <td th:text="${exercise.repetitions}">10</td>
+                        <td th:text="${exercise.weight}">50.0</td>
+                        <td class="actions">
+                            <a th:href="@{/routines/{routineId}/exercises/{exerciseId}/edit(routineId=${routine.id}, exerciseId=${exercise.id}, page=${page}, size=${size}, mc=${mc})}" 
+                               class="btn btn-sm btn-warning">Modifier</a>
+                            <form th:action="@{/routines/{routineId}/exercises/{exerciseId}/delete(routineId=${routine.id}, exerciseId=${exercise.id}, page=${page}, size=${size}, mc=${mc})}" 
+                                  method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${routine.exercises.isEmpty()}">
+                        <td colspan="5" class="text-center">Aucun exercice associé</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Fitness IUT - Projet Spring Boot</p>
+        </div>
+    </footer>
+</body>
+</html>
