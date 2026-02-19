@@ -22,25 +22,6 @@ Application Spring Boot permettant de gérer des routines de fitness et leurs ex
 - MariaDB ou MySQL installé et démarré
 - Maven installé
 
-### Base de données
-
-1. Créer la base de données en important le fichier SQL fourni :
-
-```bash
-mysql -u root -p < fitness_iut_dump.sql
-```
-
-Le fichier `fitness_iut_dump.sql` crée la base de données `fitness_iut` avec :
-- Table `routines` : id, name, description, creation_date, status
-- Table `exercises` : id, name, repetitions, weight, routine_id (FK avec CASCADE DELETE)
-
-2. Configurer les paramètres de connexion dans `src/main/resources/application.properties` :
-
-```properties
-spring.datasource.url=jdbc:mariadb://localhost:3306/fitness_iut
-spring.datasource.username=root
-spring.datasource.password=
-```
 
 ### Port de l'application
 
@@ -67,7 +48,7 @@ L'application sera accessible à l'adresse : http://localhost:8081
 ## Fonctionnalités MVC (Interface Web)
 
 ### Routines
-https://github.com/Ducry-PL/Projet-Fitness-IUT/tree/copilot/add-routine-modify-exercise
+
 1. **Liste des routines** (`/routines`)
    - Liste paginée des routines
    - Recherche par nom ou description (paramètre `mc`)
@@ -305,32 +286,32 @@ src/
 
 ## Liste des fonctionnalités développées
 
-### ✅ Fonctionnalités obligatoires
+### OK Fonctionnalités obligatoires
 
 #### MVC - Routines (8 points)
-- ✅ Liste paginée avec choix de taille + conservation p/s
-- ✅ Recherche mc + conservation mc dans pagination/édition
-- ✅ CRUD routine (create/update) avec redirections + messages
-- ✅ Suppression routine + cohérence (cascade/aucun orphelin)
+- OK Liste paginée avec choix de taille + conservation p/s
+- OK Recherche mc + conservation mc dans pagination/édition
+- OK CRUD routine (create/update) avec redirections + messages
+- OK Suppression routine + cohérence (cascade/aucun orphelin)
 
 #### MVC - Exercices (5 points)
-- ✅ Ajouter un exercice à une routine
-- ✅ Modifier un exercice
-- ✅ Supprimer un exercice + retour propre
+- OK Ajouter un exercice à une routine
+- OK Modifier un exercice
+- OK Supprimer un exercice + retour propre
 
 #### Validation (2 points)
-- ✅ Validation routine (serveur) + affichage erreurs
-- ✅ Validation exercice (serveur) + affichage erreurs
+- OK Validation routine (serveur) + affichage erreurs
+- OK Validation exercice (serveur) + affichage erreurs
 
 #### REST (3 points)
-- ✅ GET /api/routines : liste des routines
-- ✅ GET /api/routines/{id} : détail d'une routine
-- ✅ POST /api/routines : création d'une routine
-- ✅ DELETE /api/routines/{id} : suppression d'une routine
+- OK GET /api/routines : liste des routines
+- OK GET /api/routines/{id} : détail d'une routine
+- OK POST /api/routines : création d'une routine
+- OK DELETE /api/routines/{id} : suppression d'une routine
 
-### ✅ Options bonus (valorisées)
-- ✅ Pagination/filtre sur l'API REST (paramètres page, size, mc)
-- ✅ Gestion d'erreurs REST propre (codes HTTP, messages JSON)
+### OK Options bonus (valorisées)
+- OK Pagination/filtre sur l'API REST (paramètres page, size, mc)
+- OK Gestion d'erreurs REST propre (codes HTTP, messages JSON)
 
 ## Notes importantes
 
