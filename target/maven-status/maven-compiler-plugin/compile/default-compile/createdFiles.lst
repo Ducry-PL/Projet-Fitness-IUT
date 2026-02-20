@@ -1,0 +1,8 @@
+com\fitness\iut\entity\Exercise.class
+com\fitness\iut\controller\HomeController.class
+com\fitness\iut\entity\Routine.class
+com\fitness\iut\FitnessIutApplication.class
+com\fitness\iut\controller\RoutineController.class
+com\fitness\iut\repository\RoutineRepository.class
+com\fitness\iut\controller\RoutineRestController.class
+com\fitness\iut\repository\ExerciseRepository.class
