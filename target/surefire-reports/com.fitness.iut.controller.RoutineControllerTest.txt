@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.fitness.iut.controller.RoutineControllerTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.579 s -- in com.fitness.iut.controller.RoutineControllerTest
